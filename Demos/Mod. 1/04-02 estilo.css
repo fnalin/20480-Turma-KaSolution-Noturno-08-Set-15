@@ -1,0 +1,11 @@
+p#meu-paragrafo{
+			color:red;
+		}
+p.meu-paragrafo-classe{
+	font-family: Verdana, Arial,sans-serif;
+	background-color: gray;
+}
+input[type="email"]{
+	background-color: #F5F5F5;
+	width:500px;
+}
