@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Demo jQuery Ajax</h2>
+
+<div class="form-horizontal">
+    <h4>Teste DDL c/ Ajax</h4>
+    <hr />
+    <div class="form-group">
+        <label class="control-label col-md-2">Sexo</label>
+        <div class="col-md-10">
+            <select class="form-control select-pqno no-block" id="Sexo">
+                <option value=""> -- Selecione --</option>
+                <option value="1"> Masculino</option>
+                <option value="0">Feminino</option>
+            </select>
+            <img id="AjaxLoader" src="~/Content/img/ajax-loader.gif" class="hidden" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Pessoas:</label>
+        <div class="col-md-10">
+            <select class="form-control select-grande" id="Pessoas">
+                <option> -- Selecione o sexo --</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $("#Sexo").on("change", function () {
+            var selecionado = $(this).val();
+            if (selecionado == "") {
+                $("#Pessoas").empty()
+                            .append("<option> -- Selecione o sexo --</option>");
+            } else {
+                var strURL = "@Url.Action("ListaPessoas")/" + "?sexo=" + selecionado;
+                $.ajax({
+                    type: "GET",
+                    async:true,
+                    url: strURL,
+                    dataType: "json",
+                    beforeSend: function () {
+                        $("#Pessoas").fadeOut().empty()
+                            .append("<option> -- Selecione a Pessoa --</option>")
+                            .fadeIn('slow');
+                        $("#AjaxLoader").removeClass("hidden");
+
+                    },
+                    success: function (dados) {
+                        //console.log(dados);
+                        $.each(dados, function (i, item) {
+                            var opcao = "<option>" + item.Nome + "</option>";
+                            $("#Pessoas").append(opcao);
+                        });
+                    },
+                    error: function () {
+                        alert("Erro");
+                    },
+                    complete: function () {
+                        $("#AjaxLoader").addClass("hidden");
+                    }
+                });
+            }
+        });
+    </script>
+}

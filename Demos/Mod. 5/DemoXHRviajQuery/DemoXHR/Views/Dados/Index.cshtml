@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<hgroup>
+    <h2>Demo XHR Form</h2>
+    <h3>via jQuery.ajax</h3>
+</hgroup>
+<br />
+<form id="frmForm1" class="form-horizontal" method="post" action="Dados/Form1" role="form">
+    <h2>Form1</h2>
+    <div class="form-group">
+        <input type="hidden" name="ID" value="666" />
+        <label for="inputNome" class="col-sm-2 control-label">Nome</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="nome" id="inputNome" placeholder="Nome">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+            <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="btn-Form1" type="button" class="btn btn-default">Salvar</button>
+        </div>
+    </div>
+</form>
+<br />
+<hr />
+<br />
+<form id="frmForm2" class="form-horizontal" method="post" action="Dados/Form2" role="form">
+    <input type="hidden" name="ID" id="inputForm2ID" value="24" />
+    <h2>Form 2</h2>
+    <div class="form-group">
+        <label for="inputNome2" class="col-sm-2 control-label">Nome</label>
+        <div class="col-sm-10">
+            <input type="text" name="nome" class="form-control" id="inputNome2" placeholder="Nome">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="inputTelefone" class="col-sm-2 control-label">Telefone</label>
+        <div class="col-sm-10">
+            <input type="text" name="telefone" class="form-control" id="inputTelefone" placeholder="Telefone">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="btn-Form2" type="button" class="btn btn-default">Salvar</button>
+        </div>
+    </div>
+</form>
+
+@section scripts{
+    <script>
+    var img = $('<img/>');
+    img.attr('src', "@Url.Content("~/Content/ajax-loader.gif")");
+
+    $("#btn-Form1").on("click", function () {
+        //alert("botão 1");
+        /*
+        var txtnome = $("#inputNome").val();
+        var txtemail = $("#inputEmail").val();
+        var data = {nome:txtnome,email:txtemail};
+        */
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("Form1")", //'Dados/Form1',
+                data: $("#frmForm1").serialize(), //serializando todos os inputs dentro do Form1
+                beforeSend: function () {
+                    $("#btn-Form1").attr("disabled", "disabled");
+                    img.insertAfter($("#btn-Form1"));
+                },
+                success: function (resp) {
+                    if (resp.erro == true) {
+                        alert(resp.msg);
+                        $("#inputNome1").focus();
+                    }
+                },
+                error: function () {
+                    alert("deu erro");
+                },
+                complete: function () {
+                    $("#btn-Form1").removeAttr("disabled");
+                    img.remove();
+                }
+
+            });
+            return false;
+
+        });
+        $("#btn-Form2").on("click", function () {
+            //alert("botão 1");
+            var txtnome = $("#inputNome2").val();
+            var txttelefone = $("#inputTelefone").val();
+            var id = $("#inputForm2ID").val();
+            var data = { id:id, nome: txtnome, telefone: txttelefone };
+            $.ajax({
+                type: 'GET',
+                url: "@Url.Action("Form2")", //'Dados/Form2',
+                data: data, //Enviando os dados preenchidos manualmente no objeto dados
+                beforeSend: function () {
+                    $("#btn-Form2").attr("disabled", "disabled");
+                    img.insertAfter($("#btn-Form2"));
+                },
+                success: function (resp) {
+                    if (resp.erro == true) {
+                        alert(resp.msg);
+                        $("#inputNome2").focus();
+                    }
+                },
+                error: function () {
+                    alert("deu erro");
+                },
+                complete: function () {
+                    $("#btn-Form2").removeAttr("disabled");
+                    img.remove();
+                }
+            });
+            return false;
+
+        });
+    </script>
+}

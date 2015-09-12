@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Demo $.Get</h2>
+
+<br />
+
+<div>
+    <button id="btnGet">Buscar Clientes via $.Get</button>
+    <img id="ajaxLoad" class="hidden" src="~/Content/img/ajax-loader.gif" />
+</div>
+<br />
+<div>
+    <select id="selectClientes">
+        <option> -- Vazio -- </option>
+    </select>
+</div>
+@section scripts{
+    <script>
+        var strURL = "@Url.Action("GetClientes")+fsdf";
+    </script>
+    <script src="~/Scripts/exemplo-Get.js"></script>
+}
+
