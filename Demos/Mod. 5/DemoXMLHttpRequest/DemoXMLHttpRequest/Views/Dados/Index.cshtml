@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Demo XMLHttpResult</h2>
+
+<button onclick="BaixarClientesPorJson()" class="btn btn-default" id="json">Obter Json</button>
+
+<button onclick="BaixarClientesPorXML()" class="btn btn-danger" id="xml">Obter XML</button>
+<img id="imgLoad" src="~/Content/ajax-loader-barra.gif" />
+<br />
+
+<table id="tableClientes" class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Nome
+            </th>
+        </tr>
+    </thead>
+    <tbody id="tbodyClientes"></tbody>   
+
+</table>
+
+<script>
+    var urlXML = "@Url.Action("CliXML")";
+    var urlJson = "@Url.Action("GetClientesJson")";
+
+    var tabela = document.getElementById("tableClientes");
+    var imgLoading = document.getElementById("imgLoad");
+
+    function BaixarClientesPorXML() {
+        tabela.style.visibility = 'hidden';
+        imgLoading.style.visibility = 'visible';
+
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var tbody = "";
+                var cliXml = xmlhttp.responseXML.getElementsByTagName("Cliente");
+                for (i = 0; i < cliXml.length; i++) {
+                    var id = cliXml[i].getAttribute('ID');
+                    var nome = cliXml[i].getAttribute('Nome');
+                    tbody += "<tr><td>" +
+                    nome +
+                    "</td><td>" +
+                    id +
+                    "</td></tr>";
+                }
+                tbody += "</table>"
+                document.getElementById("tbodyClientes").innerHTML = tbody;
+                imgLoading.style.visibility = 'hidden';
+                tabela.style.visibility = 'visible';
+            }
+        }
+
+        xmlhttp.open("GET", urlXML);
+        xmlhttp.send();
+
+    }
+
+    function BaixarClientesPorJson() {
+        tabela.style.visibility = 'hidden';
+        imgLoading.style.visibility = 'visible';
+
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var arr = JSON.parse(xmlhttp.responseText);
+                var tbody = "";
+
+                for (i = 0; i < arr.length; i++) {
+                    tbody += "<tr><td>" +
+                    arr[i].Nome +
+                    "</td><td>" +
+                    arr[i].ID +
+                    "</td></tr>";
+                }
+                tbody += "</table>"
+                document.getElementById("tbodyClientes").innerHTML = tbody;
+                imgLoading.style.visibility = 'hidden';
+                tabela.style.visibility = 'visible';
+            }
+        }
+        xmlhttp.open("GET", urlJson);
+        xmlhttp.send();
+    }
+
+</script>
