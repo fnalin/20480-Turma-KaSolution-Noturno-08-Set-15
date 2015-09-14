@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="utf-8" />
+	<title>Font-face</title>
+	<!--<link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>-->
+	<style>
+		@import url(https://fonts.googleapis.com/css?family=Dancing+Script);
+		span {
+			font-family: 'Dancing Script', cursive;
+		}
+		@font-face {
+			font-family: minhaFonte;
+			src: url(IndieFlower.ttf);
+		}
+		
+		div {
+			font-family: minhaFonte;
+		}
+	</style>
+</head>
+<body>
+	<h1>Título do Documento</h1>
+	<span>
+		texto com a font importada do google
+	</span>
+	<div>
+		texto com baixada no computador
+	</div>
+</body>
+<html>

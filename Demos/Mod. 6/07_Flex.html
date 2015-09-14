@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <style>
+        .box {
+            display: flex;
+            flex-flow: row nowrap;
+            height: 100px;
+            justify-content: center;
+            align-content: center;
+            align-content: center;
+        }
+        
+        div.A,div.B,div.C,div.D{
+            width: 50px;
+            color:#fff;
+            text-align: center;
+            font-size:50px;
+        }
+        
+        .box div.A {
+            order: 3;
+            background-color: red;
+        }
+        
+        .box div.B {
+            order: 2;
+            background-color: green;            
+        }
+        
+        .box div.C {
+            order: 1;
+            background-color: blue;
+        }
+        
+        .box div.D {
+            order: 4;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="A">A</div>
+        <div class="B">B</div>
+        <div class="C">C</div>
+        <div class="D">D</div>
+    </div>
+</body>
+
+</html>
