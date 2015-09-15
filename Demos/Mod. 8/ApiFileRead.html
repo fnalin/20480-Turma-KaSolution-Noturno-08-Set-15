@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <meta charset="utf-8" />
+        <title>Título da página</title>
+        <style type="text/css">
+        article{
+          padding: 10px;
+          border: 1px solid #ccc;
+        }
+        input[type="file"]{
+          margin: 10px 20px;
+          font-size: 16px;
+        }
+        .thumb {
+          height: 75px;
+          border: 1px solid #000;
+          margin: 10px 5px 0 0;
+        }
+        </style>
+        <script>
+            // Checar se a api é suportada
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+              console.log('api file suportada')
+            } else {
+              console.log('API não suportada');
+            }
+
+            function handleFileSelect(evt) {
+                var files = evt.target.files; // FileList object
+                
+                //imagem
+
+                // Loop no  FileList e renderiza a image como thumbnails.
+                for (var i = 0,f; f = files[i]; i++) {
+
+                  // Somente imagens.
+                  if (!f.type.match('image.*')) {
+                    continue;
+                  }
+
+                  var reader = new FileReader();
+
+                  reader.onload = (function(theFile) {
+                    return function(e) {
+                      // Renderiza thumbnail.
+                      var span = document.createElement('span');
+                      span.innerHTML = ['<img class="thumb" src="', e.target.result,
+                                        '" title="', escape(theFile.name), '"/>'].join('');
+                      document.getElementById('list').insertBefore(span, null);
+                    };
+                  })(f); //Self-Invoking Functions
+                  
+                  // Read in the image file as a data URL.
+                  reader.readAsDataURL(f);
+                }
+            }
+
+            function addEventos(){
+              document.getElementById('files').addEventListener('change', handleFileSelect, false);
+            }
+
+            window.addEventListener('load',addEventos,false);
+
+
+        </script>
+    </head>
+    <body>
+        <article>
+          <section>
+            <input type="file" id="files" name="files[]" multiple />
+            <div id="list"></div>
+          </section>
+        </article>
+    </body>
+</html>  

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAEktUD7L9cI4CKop3Gymx3wd0ER-MD3w0&sensor=SET_TO_TRUE_OR_FALSE">
+    </script>
+    <script type="text/javascript">
+    //https://developers.google.com/maps/documentation/javascript/tutorial?hl=pt-br
+      /*function initialize() {
+        
+        var myLatlng = new google.maps.LatLng(-23.50897, -46.757563);
+        var mapOptions = {
+          center: new google.maps.LatLng(myLatlng),
+          zoom: 18,
+          mapTypeId: google.maps.MapTypeId.SATELLITE
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: 'Hello World!'
+        });
+        
+      }
+
+      */
+
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(-23.545556, -46.475);
+        var mapOptions = {
+          zoom: 10,
+          center: myLatlng
+        }
+        var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: 'Coringão'
+        });
+      }
+
+    </script>
+  </head>
+  <body onload="initialize()">
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+  </body>
+</html>  

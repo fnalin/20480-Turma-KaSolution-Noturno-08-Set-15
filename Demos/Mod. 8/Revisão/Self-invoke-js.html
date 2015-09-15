@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Título da página</title>
+    <script>
+       (function(){
+		   alert("Function Self-invoke\nolha eu aqui")
+	   })();
+       	   
+	   (function(teste){
+           //teste === window
+		   teste.alert("Function Self-invoke com o window de parâmetro")
+	   })(this);
+     
+        
+    </script>
+</head>
+
+<body>
+    <ul id="relacao"></ul>
+</body>
+
+</html>

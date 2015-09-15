@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Título da página</title>
+    <script>
+        var ExArrayClass = function(){
+            var nomes = [];
+            nomes[0] = "fabiano";
+            nomes[1] = "priscila";
+            nomes[2] = "raphinha";
+            nomes[3] = "murilo";
+            nomes.push("novo item");
+            
+            this.GetNomes = function(){
+                return nomes;
+            };
+                
+            this.ListaNomes = function(){
+                    var conteudo = "";
+                    for(x=0;x<nomes.length;x++){
+                        console.log(nomes[x]);
+                        conteudo+="<li>" + nomes[x] + "</li>";
+                    }
+                    return conteudo;
+                };
+                
+                this.StringNomes = function(){
+                    var nomes = this.GetNomes();
+                    return nomes.join(' | ');
+                };           
+        };
+
+        window.onload = function(){
+            var classe = new ExArrayClass();
+            
+            var _ul = document.getElementById("relacao");
+            _ul.innerHTML = classe.ListaNomes();
+            
+            var _li = document.createElement('li');
+            _li.innerText = classe.StringNomes();
+            _ul.appendChild(_li);
+        };
+    </script>
+</head>
+
+<body>
+    <ul id="relacao"></ul>
+</body>
+
+</html>

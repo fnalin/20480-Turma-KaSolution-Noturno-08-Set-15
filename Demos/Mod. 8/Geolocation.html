@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <!-- Codificação da página: -->
+        <meta charset="utf-8" />
+        <title>Título da página</title>
+        <style type="text/css">
+          article{
+            padding: 10px;
+            border: 1px solid #ccc;
+          }
+        </style>
+        <script>
+            // Checar se a api é suportada
+            if (navigator.geolocation) {
+              console.log('API navigator suportada')
+            } else {
+              console.log('API não suportada');
+            }
+
+            var x;
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else { 
+                    x.innerHTML = "Geolocation não é suportada pelo browser.";
+                }
+            }
+
+            function showPosition(position) {
+                x.innerHTML="Latitude: " + position.coords.latitude + 
+                "<br>Longitude: " + position.coords.longitude;  
+            }
+
+            function addEventos() {
+              document.getElementById('btnGetGeo').addEventListener('click', getLocation, false);
+              x = document.getElementById("demo");
+            }
+
+            window.addEventListener('load',addEventos,false);
+
+        </script>
+    </head>
+    <body>
+        <article>
+          <section>
+            <p id="demo">Clique no botão abaixo para buscar suas coordenadas:</p>
+            <button id="btnGetGeo">Buscar</button>
+          </section>
+        </article>
+    </body>
+</html>  

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <!-- Codificação da página: -->
+        <meta charset="utf-8" />
+        <title>Título da página</title>
+        <style type="text/css">
+        div{
+          padding: 10px;
+          border: 1px solid #ccc;
+        }
+        </style>
+        <script>
+
+            function addEventos(){
+              document.getElementById( 'tres' ).addEventListener( 'click', function( event ){
+                  console.log( '#tres clicado' );
+                  //pára a propagação dos eventos
+                  //event.stopPropagation();
+              },false);
+
+              //modo captura -> vai ter preferência de cima pra baixo pelo dom
+              //se false - modo bubbling - inverte, de baixo para cima
+              document.getElementById( 'um' ).addEventListener( 'click', function( event ){
+                  console.log( '#um clicado' )
+              },false);
+            }
+
+            window.addEventListener('load',addEventos,false);
+
+
+        </script>
+    </head>
+    <body>
+        <div id="um">
+          Div um
+          <div id="dois">
+            Div dois
+            <div id="tres">Div três</div>
+          </div>
+        </div>
+    </body>
+</html>  

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <!-- Codificação da página: -->
+        <meta charset="utf-8" />
+        <title>Título da página</title>
+        <style type="text/css">
+          article{
+            padding: 10px;
+            border: 1px solid #ccc;
+          }
+          input[type="file"]{
+            margin: 10px 20px;
+            font-size: 16px;
+          }
+          #progress_bar {
+            margin: 10px 0;
+            padding: 3px;
+            border: 1px solid #000;
+            font-size: 14px;
+            clear: both;
+            opacity: 0;
+          }
+          #progress_bar.loading {
+            opacity: 1.0;
+          }
+          #progress_bar .percent {
+            background-color: #99ccff;
+            height: auto;
+            width: 0;
+          }
+        </style>
+        <script>
+            // Checar se a api é suportada
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+              console.log('API file suportada')
+            } else {
+              console.log('API não suportada');
+            }
+
+            var reader;
+            var progress;
+
+            function abortRead() {
+              reader.abort();
+            }
+
+            function errorHandler(evt) {
+              switch(evt.target.error.code) {
+                case evt.target.error.NOT_FOUND_ERR:
+                  alert('Arquivo não encontrado!');
+                  break;
+                case evt.target.error.NOT_READABLE_ERR:
+                  alert('Não é possível obter o arquivo');
+                  break;
+                case evt.target.error.ABORT_ERR:
+                  break; // noop
+                default:
+                  alert('Ops, um erro ocorreu na tentativa de ler o arquivo.');
+              };
+            }
+
+            function updateProgress(evt) {
+              // evt é um ProgressEvent.
+              if (evt.lengthComputable) {
+                var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
+                // Incrementa a barra de progresso
+                if (percentLoaded < 100) {
+                  progress.style.width = percentLoaded + '%';
+                  progress.textContent = percentLoaded + '%';
+                }
+              }
+            }
+
+            function handleFileSelect(evt) {
+              // reinicia a barra de progresso para um novo arquivo
+              progress.style.width = '0%';
+              progress.textContent = '0%';
+
+              reader = new FileReader();
+              reader.onerror = errorHandler;
+              reader.onprogress = updateProgress;
+              reader.onabort = function(e) {
+                alert("Ação cancelada");
+              };
+              reader.onloadstart = function(e) {
+                document.getElementById('progress_bar').className = 'loading';
+              };
+              reader.onload = function(e) {
+                // Exibe 100% na barra de progresso quando terminado
+                progress.style.width = '100%';
+                progress.textContent = '100%';
+                setTimeout("document.getElementById('progress_bar').className='';", 2000);
+              }
+
+              // Lê o arquivo
+              reader.readAsBinaryString(evt.target.files[0]);
+            }
+
+            function addEventos() {
+              document.getElementById('files').addEventListener('change', handleFileSelect, false);
+              progress = document.querySelector('.percent');
+            }
+
+            window.addEventListener("load", addEventos, false);
+
+        </script>
+    </head>
+    <body>
+        <article>
+          <section>
+            <input type="file" id="files" name="file" />
+            <button onclick="abortRead();">Cancelar leitura</button>
+            <div id="progress_bar">
+                <div class="percent">0%</div>
+                </div>
+          </section>
+        </article>
+    </body>
+</html>  

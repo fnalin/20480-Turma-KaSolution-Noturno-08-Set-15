@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <meta charset="utf-8" />
+        <title>Título da página</title>
+        <style type="text/css">
+        article{
+          padding: 10px;
+          border: 1px solid #ccc;
+        }
+        input[type="file"]{
+          margin: 10px 20px;
+          font-size: 16px;
+        }
+        </style>
+        <script>
+            // Checar se a api é suportada
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+              console.log('API file suportada')
+            } else {
+              console.log('API não suportada');
+            }
+
+            function handleVerificaArquivo(evt) {
+              var files = evt.target.files; // FileList object
+              var output = [];
+              for (var i = 0, f; f = files[i]; i++) {
+                output.push('<li><strong>', f.name, '</strong> (', f.type || 'n/a', ') - ',
+                            f.size, ' bytes, last modified: ',
+                            f.lastModifiedDate.toLocaleDateString(), '</li>');
+              }
+              document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+            }
+
+            function addEventos() {
+              document.getElementById('files').addEventListener('change', handleVerificaArquivo, false);
+            }
+
+            window.addEventListener("load", addEventos);
+
+        </script>
+    </head>
+    <body>
+        <article>
+          <section>
+            <input type="file" id="files" name="files[]" multiple />
+            <div id="list"></div>
+          </section>
+        </article>
+    </body>
+</html>  

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>Título da página</title>
+    <script>
+        (function (){
+            setInterval(
+                function(){
+                    var _ul = document.getElementById("relacao");
+                    var _li = document.createElement('li');
+                    _li.innerText = document.getElementsByTagName("li").length+1;
+                    _ul.appendChild(_li);    
+                }
+                ,5000);
+        })();
+    </script>
+</head>
+
+<body>
+    <h2>Adicionando itens a cada 5 segundos</h2>
+    <ul id="relacao">
+    </ul>
+</body>
+
+</html>
