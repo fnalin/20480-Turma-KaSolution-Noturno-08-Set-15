@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<!-- Codificação da página: -->
+	<meta charset="utf-8" />
+	<title>Título da página</title>
+</head>
+
+<body>
+	<p>Ver o console da págin</p>
+	<script>
+		
+		//encapsulamento via function
+		var Cliente = function(id,nome){
+				this.id = id;
+				this.nome = nome;
+				this.idade = 0;
+				var _escopoInterno = "Variável de escopo interno";
+				
+				//precisa do this
+				this.AlterarIdade = function(idade){
+					if(idade<10)
+					{
+						alert("Idade não permitida");
+						return false;
+					}
+					this.idade = idade;
+				};
+				
+				this.ExibirNome = function() {
+					alert(this.nome + " - da classe original");
+    			};
+				
+				this.ExibirVariavelPrivada = function(){
+					alert(_escopoInterno);
+					return _escopoInterno;
+				};
+			};
+			
+			//Não funciona precisa utilizar prototype para estender
+			// Cliente.ExibirNome2 = function() {
+			// 		alert(this.nome + " - papapa");
+			// };
+				
+			//Usando prototype
+			Cliente.prototype.ExibirTeste = function(){
+				alert(this.nome + " - do prototype 3");
+			};
+			
+			var cli = new Cliente(1,"Fabiano");
+			var cli2 = new Cliente(2,"Priscila");
+
+			cli.ExibeIdade = function(){
+				alert(this.idade);
+			};
+			
+			//Exibindo dados do cli
+			console.log(cli.nome);
+			console.log(cli.id);
+			cli.AlterarIdade(36);
+			console.log(cli.idade);
+			cli.ExibeIdade();
+			
+			//exibindo dados do cli2
+			console.log(cli2.nome);
+			console.log(cli2.id);
+			cli2.AlterarIdade(37);
+			console.log(cli2.idade);
+			//cli2.ExibeIdade(); //--> dá erro
+	
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<!-- Codificação da página: -->
+	<meta charset="utf-8" />
+	<title>Título da página</title>
+</head>
+
+<body>
+	<p>Ver o console da págin</p>
+	<script>
+		//encapsulamento via obj
+		var Endereco = {
+			Set:function(logradouro,bairro,cidade,estado){
+				this.logradouro=logradouro;
+				this.bairro = bairro;
+				this.cidade = cidade;
+				this.estado = estado;
+			},
+			Get:function(){
+				return "Rua " + this.logradouro
+				+ " bairro: " + this.bairro;
+			},
+		};
+		
+		Endereco.Set("rua teste","morumbi","são paulo","sp");
+		console.log(Endereco.Get());
+	
+	</script>
+</body>
+
+</html>
