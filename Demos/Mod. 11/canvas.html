@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <!-- Codificação da página: -->
+        <meta charset="utf-8" />
+        <title>Canvas</title>
+        <style type="text/css">
+        div{
+          max-width: 350px;
+          border: #808080 solid 2px;
+          padding: 20px 5px;
+          margin: 10px auto;
+        }
+        button{
+            position: relative;
+            top: -50px;
+            margin-left: 10px;
+        }
+        </style>
+    </head>
+    <body>
+      <div>
+         <canvas id="textoCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+            Your browser does not support the HTML5 canvas tag.
+          </canvas>
+          <button onclick="CanvasTexto();">Canvas - Texto</button>
+      </div>
+      <div>
+        <canvas id="circleCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+          Your browser does not support the HTML5 canvas tag.
+        </canvas>
+          <button onclick="CanvasCircle();">Canvas - Circle</button>
+      </div>
+      <div>
+        <canvas id="lineCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+          Your browser does not support the HTML5 canvas tag.
+        </canvas>
+          <button onclick="CanvasLine();">Canvas - Line</button>
+      </div>
+      <div>
+        <canvas id="rectangleCanvas" width="200" height="100" style="border:1px solid #d3d3d3;">
+          Your browser does not support the HTML5 canvas tag.
+        </canvas>
+          <button onclick="CanvasRectangle();">Canvas - Rectangle</button>
+      </div>
+
+    <script>
+      function CanvasTexto(){
+        var c = document.getElementById("textoCanvas");
+        var ctx = c.getContext("2d");
+        ctx.font = "30px Arial";
+        ctx.strokeText("Hello World",10,50);
+      }
+      function CanvasCircle(){
+        var c = document.getElementById("circleCanvas");
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(95,50,40,0,2*Math.PI);
+        ctx.stroke();
+      }
+      function CanvasLine(){
+        var c = document.getElementById("lineCanvas");
+        var ctx = c.getContext("2d");
+        ctx.moveTo(0,0);
+        ctx.lineTo(200,100);
+        ctx.stroke();
+      }
+      function CanvasRectangle(){
+        var c = document.getElementById("rectangleCanvas");
+        var ctx = c.getContext("2d");
+        ctx.fillStyle = "#FF0000";
+        ctx.fillRect(0,0,150,150);
+      }
+    </script>
+    </body>
+</html>  

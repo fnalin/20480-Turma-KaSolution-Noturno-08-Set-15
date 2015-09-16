@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <!-- Codificação da página: -->
+        <meta charset="utf-8" />
+        <title>SVG</title>
+		<style>
+			svg {
+				border: 2px solid darkblue;
+				background-color: lightgreen;
+				width: 300px;
+				height: 200px;
+    		}
+			#red:hover,#blue:hover{
+				cursor: pointer;
+			}
+		</style>
+    </head>
+    <body>
+		<svg xmlns="http://www.w3.org/2000/svg">
+			<g transform="rotate(45 50 50)">
+				<rect id="red" x="50" y="50" width="100" height="75" rx="20" ry="20" fill="red" stroke="blue">
+					<title>clique aqui no vermelho</title>
+				</rect>
+				<text x="50" y="70" font-family="Verdana" font-size="14" fill="#fff" > Hello </text>
+				
+			</g>
+			<rect id="blue" x="75" y="75" title="clique aqui no azul" width="100" height="75" fill="blue" stroke="yellow">
+				<title>clique aqui no azul</title>
+				
+			</rect>
+		</svg>
+		
+		<script>
+			document.getElementById("red").onclick = function(){
+				alert("vermelho");
+			};
+			
+			document.getElementById("blue").onclick = function(){
+				alert("azul");
+			};
+		</script>
+    </body>
+</html>  

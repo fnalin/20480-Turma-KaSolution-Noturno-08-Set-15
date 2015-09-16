@@ -1,0 +1,48 @@
+
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <!-- Codificação da página: -->
+        <meta charset="utf-8" />
+        <title>SVG</title>
+		<style>
+			svg {
+				border: 2px solid darkblue;
+				background-color: lightgreen;
+				width: 900px;
+				height: 300px;
+    		}
+			#red:hover,#blue:hover{
+				cursor: pointer;
+			}
+		</style>
+    </head>
+    <body>
+		<svg xmlns="http://www.w3.org/2000/svg" id="textPath">
+            <path id="wavyPath1"
+                    fill="none" stroke="green" stroke-width="5"
+                    d="M 50 250
+                            C 150 150 250 50 350 150
+                            C 450 250 550 350 650 250
+                            C 750 150 850 150 850 150" />
+            <text font-size="46" fill="red" font-family="Verdana">
+                <textPath xlink:href="#wavyPath1">
+                    Esse texto ficou muito louco. Certo?
+                </textPath>
+            </text>
+        
+        </svg>
+		
+		<!-- 
+            * Tabela para o Path *
+            M: Move to a new location, without drawing a line.
+            L: Draw a line from the current location to a new location.
+            A: Draw an elliptical arc.
+            Q: Draw a quadratic Bezier curve. A quadratic Bezier curve is a curve that joins two points, and has one turning point along its journey.
+            C: Draw a cubic Bezier curve. A cubic Bezier curve is a curve that joins two points, and has two turning points along its journey.
+            Z: Close the current path by connecting the last point back to the first point.
+            -->
+    </body>
+</html>  
