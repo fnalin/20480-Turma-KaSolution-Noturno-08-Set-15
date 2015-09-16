@@ -1,0 +1,134 @@
+﻿@charset "UTF-8";
+@import url(http://fonts.googleapis.com/css?family=Paytone+One);
+
+html {
+    background-color: #000;
+    background: repeating-radial-gradient(circle,#fff,#000);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body {
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+}
+
+#conteiner {
+    margin: 0 auto;
+    max-width: 1000px;
+    background: url('../img/icon-metal.png') no-repeat;
+}
+
+header {
+    font-family: 'Paytone One', sans-serif;
+    text-align: center;
+    text-shadow: 0 0 10px #fff;
+}
+
+article {
+    margin-top: -10px;
+    padding: 0 30px;
+    border: solid #000 2px;
+    border-radius: 5px;
+    min-height: 500px;
+    background-color: #ffffff;
+}
+
+    article > hgroup {
+        text-align: center;
+    }
+
+    article > section#descricao {
+        text-align: center;
+    }
+
+section#links {
+    display: inline-block;
+}
+
+    section#links > section {
+        float: left;
+        margin: 40px 40px 0 0;
+        /*border:2px solid red;*/
+    }
+
+section.conteudo-demo {
+    font-size: 0.8em;
+    margin: 50px 0;
+    padding: 10px;
+    min-height: 300px;
+    background-color: #fbfbfb;
+    border: 1px solid #eae7e7;
+}
+
+    section.conteudo-demo > section {
+        float: left;
+        width: 50%;
+    }
+
+    section.conteudo-demo div {
+        margin: 10px 0;
+        padding: 10px;
+    }
+
+
+    section.conteudo-demo label {
+        display: inline-block;
+        width: 120px;
+        font-weight: bold;
+        text-align: right;
+    }
+
+    section.conteudo-demo input {
+        border: 2px solid #808080;
+        border-radius: 5px 5px;
+    }
+
+    section.conteudo-demo select, input {
+        padding: 5px;
+        width: 200px;
+    }
+
+    section.conteudo-demo input:focus {
+        border-color: #0094ff;
+        background-color: #d0d0d0;
+        color: #fff;
+    }
+
+
+div.btnconteiner {
+    position: relative;
+    margin: -5px 0 !important;
+}
+
+    div.btnconteiner > div.code {
+        font-family: Courier New, Courier, monospace;
+        font-size: 10pt;
+        height: 260px;
+        background-color: #000;
+        overflow-y: scroll;
+        color: #00ff00;
+        font-weight: bold;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 96%;
+    }
+
+    div.btnconteiner > #btnLimpar {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+footer {
+    font-family: 'Paytone One', sans-serif;
+    margin-top: 20px;
+    text-align: center;
+    text-shadow: 0 0 10px #fff;
+}
+
+    footer > a {
+        text-decoration: none;
+        color: #000;
+    }

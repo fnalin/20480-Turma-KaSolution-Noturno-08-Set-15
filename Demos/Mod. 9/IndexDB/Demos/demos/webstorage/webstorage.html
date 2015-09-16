@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <title>Demo LocalStorage</title>
+    <!--[if IE]><link rel="shortcut icon" href="~/img/favicon.ico"><![endif]-->
+    <link rel="icon" href="~/img/favicon.ico">
+    <link href="../../css/meuEstilo.css" rel="stylesheet" />
+    <script src="webstorage.js"></script>
+</head>
+<body>
+    <div id="conteiner">
+        <header>
+            <h1>&lt; demos /&gt;</h1>
+        </header>
+        <article>
+            <hgroup>
+                <h1>Demo - <small><span id="tipostorage">localstorage</span></small></h1>
+            </hgroup>
+            <section class="conteudo-demo">
+                <section>
+                    <div>
+                        <label for="key">Nome da key:</label>
+                        <input type="text" id="key" autofocus />
+                    </div>
+                    <div>
+                        <label for="value">Valor:</label>
+                        <input type="text" id="value" />
+                    </div>
+                    <div style="text-align:center;">
+                        <button id="btnAddKey">Adicionar Key</button>
+                    </div>
+                </section>
+                <section>
+                    <div>
+                        <label>Keys:</label>
+                        <select id="keys">
+                            <option value="value" selected> -- No Keys -- </option>
+                        </select>
+                        <button id="remove">x</button>
+                    </div>
+                    <div id="output" style="text-align:center;">
+                        output
+                    </div>
+                </section>
+            </section>
+            <p style="text-align:center;">
+                <a href="../../index.html">voltar</a>
+            </p>
+        </article>
+        <footer>
+            <a href="http://fabianonalin.net.br" target="_blank">
+                &copy; Fabiano Nalin
+            </a>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <!-- Codificação da página: -->
+        <meta charset="utf-8" />
+        <title>Título da página</title>
+        <style type="text/css">
+        article{
+          padding: 10px;
+          border: 1px solid #ccc;
+        }
+        input[type="file"]{
+          margin: 10px 20px;
+          font-size: 16px;
+        }
+        </style>
+        <script>
+            // Checar se é suportado
+            if (localStorage) {
+              console.log('localStorage suportado')
+            } else {
+              console.log('não suportado');
+            }
+
+            var itens;
+
+            function obterLocalStorage () {
+              //sessionStorage.myKey = "some text value";
+
+              var local = localStorage.myKey;
+              
+              if(local!=undefined)
+                return local;
+
+              return "";
+            };
+
+            function setarLocalStorage () {
+              localStorage.myKey = itens.value;
+              return false;
+            };
+
+
+            function myStorageCallback( e ) {
+                alert( "Key:" + e.key + " changed to " + e.newValue );
+            }
+
+            function addEventos() {
+              itens = document.getElementById("itens");
+              itens.addEventListener('change', setarLocalStorage, false);
+              
+
+              //https://code.google.com/p/chromium/issues/detail?id=48159&q=localStorage%20event&colspec=ID%20Stars%20Pri%20Area%20Feature%20Type%20Status%20Summary%20Modified%20Owner%20Mstone%20OS
+              //window.addEventListener("storage", myStorageCallback, true );
+              
+
+              var local = obterLocalStorage();
+              if(local.length>0)
+                itens.value=local;
+
+            }
+
+
+            
+
+            window.addEventListener("load", addEventos, false);
+
+            
+
+        </script>
+    </head>
+    <body>
+        <article>
+          <h2>LocalStorage</h2>
+          <p>Fica disponível no navegador</p>
+          <section>
+            <label>Selecione: 
+              <select id="itens">
+                <option value=1>Item I</option>
+                <option value=2>Item II</option>
+                <option value=3>Item III</option>
+                <option value=4>Item IV</option>
+                <option value=5>Item V</option>
+              </select>
+            </label>
+          </section>
+        </article>
+    </body>
+</html>  

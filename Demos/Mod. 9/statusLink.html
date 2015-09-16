@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Codificação da página: -->
+    <meta charset="utf-8" />
+    <title>Título da página</title>
+</head>
+
+<body>
+    
+    <div id="statusDiv"></div>
+    
+    <script>
+        var s;
+        function onlineStatus() {
+            s.innerHTML = "Online.";
+        }
+        function offlineStatus() {
+            s.innerHTML = "Offline.";
+        }
+        onload = function() {
+            s = document.getElementById("statusDiv");
+            if( navigator.onLine ) {
+                onlineStatus();
+            } else {
+        offlineStatus();
+            }
+            window.addEventListener("online", onlineStatus, true);
+            window.addEventListener("offline", offlineStatus, true);
+        }
+    </script>
+</body>
+
+</html>

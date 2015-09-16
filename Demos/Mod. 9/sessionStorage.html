@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <!-- Codificação da página: -->
+        <meta charset="utf-8" />
+        <title>Título da página</title>
+        <style type="text/css">
+        article{
+          padding: 10px;
+          border: 1px solid #ccc;
+        }
+        input[type="file"]{
+          margin: 10px 20px;
+          font-size: 16px;
+        }
+        </style>
+        <script>
+            // Checar se é suportado
+            if (sessionStorage) {
+              console.log('sessionStorage suportado')
+            } else {
+              console.log('não suportado');
+            }
+
+            var itens;
+
+            function obterSessionStorage () {
+              //sessionStorage.myKey = "some text value";
+
+              var session = sessionStorage.myKey;
+              
+              if(session!=undefined)
+                return session;
+
+              return "";
+            };
+
+            function setarSessionStorage () {
+              sessionStorage.myKey = itens.value;
+              return false;
+            };
+
+            function addEventos() {
+              itens = document.getElementById("itens");
+              itens.addEventListener('change', setarSessionStorage, false);
+              var session = obterSessionStorage();
+              if(session.length>0)
+                itens.value=session;
+
+            }
+
+            window.onload = addEventos;
+
+        </script>
+    </head>
+    <body>
+        <article>
+          <h2>sessionStorage</h2>
+          <p>Só fica disponível na sessão atual do navegador</p>
+          <section>
+            <label>Selecione: 
+              <select id="itens">
+                <option value=1>Item I</option>
+                <option value=2>Item II</option>
+                <option value=3>Item III</option>
+                <option value=4>Item IV</option>
+                <option value=5>Item V</option>
+              </select>
+            </label>
+          </section>
+        </article>
+    </body>
+</html>  
