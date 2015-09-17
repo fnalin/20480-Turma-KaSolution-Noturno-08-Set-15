@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <meta charset="utf-8" />
+        <title>Transform D</title>
+        <style type="text/css">
+
+          div#div1 {
+              perspective: 300px; /*Qto maior mais próximo*/
+              perspective-origin: 0;
+              width: 600px;
+              height: 600px;
+              padding-top: 30px;
+              background-color: red;
+              color: #fff;
+              border: 2px solid black;
+              font-size: 1.5em;
+              text-align: center;
+          }
+          div>div {
+              /*transform: translate3d(20px, -60px, 50px); */
+              width: 400px;
+              height: 200px;
+              background-color: blue;
+          }  
+          div#div3 {
+              transform: translate3d(10px,10px, 100px);
+              background-color: #000;
+          }  
+        </style>
+    </head>
+    <body>
+      <h2>Demo translate3d</h2>
+      <p>
+        Com o <em>translate3d()</em>, o elemento se move a partir da sua posição atual, dependendo dos parâmetros determinados para o eixo X e Y e Z.
+      </p>
+      <div id="div1">Olá, eu sou a DIV pai.
+        <div id="div2">Eu sou a primeira div filha</div>
+        <div id="div3">Eu sou a DIV3 c/ translate3D</div>
+      </div>
+    </body>
+</html>  

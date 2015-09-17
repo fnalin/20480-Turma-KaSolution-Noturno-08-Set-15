@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <meta charset="utf-8" />
+        <title>Transform 3D</title>
+        <style>
+          body{
+            padding: 10px;
+          }
+          h1{
+              padding: 20px;
+          }
+
+          h2{
+              margin-top: 40px;
+          }
+
+          .conteiner{
+            float:left;
+            height: 400px;
+            width: 500px;
+          }
+
+          .boxarea{
+              width: 170px;
+              height: 170px;
+              border: 1px solid #000;
+              background-color: #000;
+              perspective: 1000px;
+              -webkit-perspective: 1000px;
+          }
+
+          .box{
+              width: 150px;
+              height: 150px;
+              padding: 10px;
+              background: Coral;
+              position: absolute;
+              left: 0;
+              top: 0;
+              transition: 3s;
+              -webkit-transition: 3s;
+          }
+
+          .first-transform{
+              opacity: .5;
+              background: #3399cc;
+          }
+
+          .transformed{
+              opacity: .8;
+          }
+
+          /*translate3d*/
+          .box-translate3d:hover .first-transform{
+              transform: translate3d(-5px, -5px, -60px) rotateY(70deg);
+              -webkit-transform: translate3d(-5px, -5px, -60px) rotateY(70deg);
+          }
+
+          .box-translate3d:hover .transformed{
+              transform: translate3d(15px, 15px, 60px) rotateY(70deg);
+              -webkit-transform: translate3d(15px, 15px, 60px) rotateY(70deg);
+          }
+
+          /*scale3d*/
+          .box-scale3d:hover .first-transform{
+              transform: scale3d(1, 1, 1) rotateY(70deg);
+              -webkit-transform: scale3d(1, 1, 1) rotateY(70deg);
+          }
+
+          .box-scale3d:hover .transformed{
+              transform: scale3d(0.6, 0.6, 2) rotateY(70deg);
+              -webkit-transform: scale3d(0.6, 0.6, 2) rotateY(70deg);
+          }
+
+          /*rotate3d*/
+          .box-rotate3d:hover .first-transform{
+              transform: rotate3d(-1, -1, -1, 110deg);
+              -webkit-transform: rotate3d(-1, -1, -1, 110deg);
+          }
+
+          .box-rotate3d:hover .transformed{
+              transform: rotate3d(1, 1, 1, 110deg);
+              -webkit-transform: rotate3d(1, 1, 1, 110deg);
+          }
+        </style>
+    </head>
+    <body>
+      <h2>Demo Transform 3d</h2>
+        
+        <div class="conteiner">
+          <h2>translate3d</h2>
+          <p><strong>Div Pai:</strong> transform: translate3d(-5px, -5px, -60px) rotateY(70deg);</p>
+          <p><strong>Filha:</strong> transform: translate3d(15px, 15px, 60px) rotateY(70deg);</p>
+          <div class="boxarea box-translate3d">
+              <div class="box first-transform">
+                  DIV Pai
+              </div>
+              <div class="box transformed">
+                  <p>
+                      <p>DIV Filha</p>
+                  Passe o mouse aqui
+              </div>
+          </div>
+        </div>
+
+        <div class="conteiner">
+          <h2>scale3d</h2>
+          <p><strong>Div Pai:</strong> transform: scale3d(1, 1, 1) rotateY(70deg);</p>
+          <p><strong>Filha:</strong> transform: scale3d(0.6, 0.6, 2) rotateY(70deg);</p>
+          <div class="boxarea box-scale3d">
+              <div class="box first-transform">
+                 DIV Pai
+              </div>
+              <div class="box transformed ">
+                  <p>
+                      <p>DIV Filha</p>
+                  Passe o mouse aqui
+              </div>
+          </div>
+        </div>
+        
+        <div class="conteiner">
+          <h2>rotate3d</h2>
+          <p><strong>Div Pai:</strong> transform: rotate3d(-1, -1, -1, 110deg);</p>
+          <p><strong>Filha:</strong> transform: rotate3d(1, 1, 1, 110deg);</p>
+          <div class="boxarea box-rotate3d">
+              <div class="box first-transform">
+                  DIV Pai
+              </div>
+              <div class="box transformed ">
+                  <p>DIV Filha</p>
+                  Passe o mouse aqui
+              </div>
+          </div>
+        </div>
+
+    </body>
+</html>  

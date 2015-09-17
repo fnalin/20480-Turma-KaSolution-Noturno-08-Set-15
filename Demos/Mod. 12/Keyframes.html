@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <meta charset="utf-8" />
+        <title>KeyFrame</title>
+        <style type="text/css">
+          body{
+            padding: 20px;
+          }
+          div {
+              width: 100px;
+              height: 100px;
+              background: red;
+              position :relative;
+              -webkit-animation: mymove 5s infinite;  /*Chrome, Safari, Opera */ 
+              animation: mymove 5s infinite;
+          }
+
+          /* Chrome, Safari, Opera */
+          @-webkit-keyframes mymove {
+              0%   {top: 0px;}
+              25%  {top: 200px;}
+              75%  {top: 50px}
+              100% {top: 100px;}
+          } 
+
+          /* Standard syntax */
+          @keyframes mymove {
+              0%   {top: 0px;}
+              25%  {top: 200px;}
+              75%  {top: 50px}
+              100% {top: 100px;}
+          }
+        </style>
+    </head>
+    <body>
+      <h2>Demo KeyFrame</h2>
+      <div></div>
+    </body>
+</html>  

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <meta charset="utf-8" />
+        <title>Transform 2D</title>
+        <style type="text/css">
+          div {
+              width: 300px;
+              height: 100px;
+              padding-top: 30px;
+              background-color: red;
+              color: #fff;
+              border: 2px solid black;
+              font-size: 1.5em;
+              text-align: center;
+          }
+
+          div#div2 {
+              margin: 20px auto 0;
+              -ms-transform: skew(30deg,20deg); /* IE 9 */
+              -webkit-transform: skew(30deg,20deg); /* Chrome, Safari, Opera */
+              transform: skew(30deg,20deg); /* Standard syntax */
+              background-color: blue;
+          }  
+        </style>
+    </head>
+    <body>
+      <h2>Demo Skew</h2>
+      <p>
+        Com o <em>skew()</em>, o elemento se inclina a partir da sua posição atual, dependendo dos parâmetros determinados para o eixo X e Y.
+      </p>
+      <div>Olá, eu sou uma DIV.</div>
+      <div id="div2">Eu sou a DIV2 c/ skew</div>
+    </body>
+</html>  

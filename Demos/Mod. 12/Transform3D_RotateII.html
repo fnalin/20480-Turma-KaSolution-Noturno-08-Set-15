@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <meta charset="utf-8" />
+        <title>Transform D</title>
+        <style>
+            #parent {
+                perspective: 300px;
+                perspective-origin: -100px -50px;
+                margin: 100px auto;
+                width: 500px;
+            }
+            #child1 {
+                width: 200px;
+                height: 200px;
+                background-color: orange;
+                position: absolute;
+                transform-origin: 0px 0px;
+                transform: rotateY(30deg);
+            }
+            #child2 {
+                width: 200px;
+                height: 200px;
+                background-color: orange;
+                position: absolute;
+                transform-origin: 0px 0px;
+                transform: rotateY(30deg) translate(250px);
+            }
+        </style>
+    </head>
+    <body>
+      <h2>Demo translate com rotate3d</h2>
+      <div id="parent">
+          <div id="child1">This is child1</div>
+          <div id="child2">This is child2</div>
+      </div>
+    </body>
+</html>  

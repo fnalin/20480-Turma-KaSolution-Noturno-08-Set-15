@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <meta charset="utf-8" />
+        <title>KeyFrame</title>
+        <style type="text/css">
+          body {
+            font-family: arial, verdana, sans-serif;
+            font-size: smaller;
+        }
+        #pooltable {
+            width: 340px;
+            height: 200px;
+            margin-bottom: 50px;
+            border-radius: 5px;
+            background: green;
+        }
+        #pooltable.animate {
+            background: blue;
+        }
+        #ball {
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background: white;
+            position: relative;
+            left: 0px;
+            top: 0px;
+        }
+        @-webkit-keyframes ballmovement {
+              0% {
+                  left: 0px;
+                  top: 0px;
+                  background-color: yellow;
+                  -ms-animation-timing-function: ease-in;
+                  -webkit-animation-timing-function: ease-in;
+                  animation-timing-function: ease-in;
+              }
+
+              33% {
+                  left: 100px;
+                  top: 160px;
+                  background-color: orange;
+              }
+
+              66% {
+                  left: 200px;
+                  top: 0px;
+                  background-color: red;
+              }
+
+              100% {
+                  left: 300px;
+                  top: 160px;
+                  background-color: purple;
+                  -ms-animation-timing-function: ease-out;
+                  -webkit-animation-timing-function: ease-out;
+                  animation-timing-function: ease-out;
+              }
+          }
+        @-ms-keyframes ballmovement {
+            0% {
+                left: 0px;
+                top: 0px;
+                background-color: yellow;
+                -ms-animation-timing-function: ease-in;
+            }
+            33% {
+                left: 100px;
+                top: 160px;
+                background-color: orange;
+            }
+            66% {
+                left: 200px;
+                top: 0px;
+                background-color: red;
+            }
+            100% {
+                left: 300px;
+                top: 160px;
+                background-color: purple;
+                -ms-animation-timing-function: ease-out;
+            }
+        }
+        #ball.animate {
+              -webkit-animation-name: ballmovement;
+              animation-name: ballmovement;
+              -ms-animation-name: ballmovement;
+
+              -ms-animation-duration: 10s;
+              -webkit-animation-duration: 10s;
+              animation-duration: 10s;
+
+              -ms-animation-delay: 3s;
+              -webkit-animation-delay: 3s;
+              animation-delay: 3s;
+
+              -ms-animation-timing-function: linear;
+              -webkit-animation-timing-function: linear;
+              animation-timing-function: linear;
+
+              -ms-animation-iteration-count: 2;
+              -webkit-animation-iteration-count: 2;
+              animation-iteration-count: 2;
+              
+              -ms-animation-direction: alternate;
+              -webkit-animation-direction: alternate;
+              animation-direction: alternate;
+          }
+
+        </style>
+
+        <script>
+
+            var pooltable, ball, button, messageLabel;
+
+            function addEventos() {
+
+                pooltable = document.getElementById("pooltable");
+                ball = document.getElementById("ball");
+                button = document.getElementById("button");
+                messageLabel = document.getElementById("messageLabel");
+
+                // Chrome, Safari and Opera
+                ball.addEventListener("webkitAnimationStart", myStartFunction);
+                ball.addEventListener("webkitAnimationIteration", myIterationFunction);
+                ball.addEventListener("webkitAnimationEnd", myEndFunction);
+
+                //IE
+                ball.addEventListener("MSAnimationStart", myStartFunction);
+                ball.addEventListener("MSAnimationIteration", myIterationFunction);
+                ball.addEventListener("MSAnimationEnd", myEndFunction);
+
+                button.addEventListener("click", startAnimation);
+            }
+
+
+            // Start the ball animation.
+            function startAnimation() {
+                button.disabled = true;
+                ball.classList.add("animate");
+            }
+
+            // Handle the event that occurs when the ball animation starts.
+            function myStartFunction(e) {
+                pooltable.classList.add("animate");
+                messageLabel.innerHTML += "Animação <b>" +  e.animationName + "</b> iniciado em " + new Date() + ".<br>";
+            };
+
+            // Handle the event that occurs for each iteration.
+            function myIterationFunction(e) {
+                messageLabel.innerHTML += "Animação <b>" +  e.animationName + "</b> iteração completada, tempo gasto " + e.elapsedTime + ".<br>";
+            };
+
+            // Handle the event that occurs when the ball animation ends.
+            function myEndFunction(e) {
+                button.disabled = false;
+                ball.classList.remove("animate");
+                pooltable.classList.remove("animate");
+                messageLabel.innerHTML += "Animação <b>" +  e.animationName + "</b> finalizada, tempo gasto " + e.elapsedTime + " segundos.<br>";
+            };
+
+            window.addEventListener("load", addEventos, false);
+
+        </script>
+    </head>
+    <body>
+      <div id="pooltable">
+          <div id="ball"></div>
+      </div>
+      <button id="button">Iniciar Animação</button>
+      <div id="messageLabel"></div>
+    </body>
+</html>  

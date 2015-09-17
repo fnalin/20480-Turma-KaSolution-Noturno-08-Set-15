@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <meta charset="utf-8" />
+        <title>CSS Transition</title>
+        <style type="text/css">
+            body{
+              padding: 0 10px;
+              font-family: Verdana, Arial, sans-serif;
+              font-weight: bolder;
+            }
+            footer{
+              clear: both;
+              padding: 20px;
+            }
+             footer>p{
+              text-align: center;
+             }
+            footer>p>span{
+              font-size: 20px;
+              display:inline-block;
+              transform: rotate(90deg);
+            }
+           p.titulo{
+              text-align: center;
+              font-size: 2em;
+            }
+            .esquerda{
+                float:left;
+                width: 58%;
+            }
+           #divVidaLoka{
+              /*border: 1px solid #ccc;*/
+              min-height: 120px;
+              padding-top:20px;
+              background-color: #000;
+              color: #fff;
+              font-size: 14px;
+              text-align: center;
+              width: 100px;
+              transition: width 10s, font-size 3s, background-color 4000ms;
+          }
+         
+            #divVidaLoka:hover{
+              background-color: #fff;
+              color: #000;
+              font-size: 26px!important;
+              cursor: pointer;
+              width: 95%;
+            }
+            .direita{
+              float:left;
+              width: 38%;
+              font-size:12px;
+              font-weight: normal;
+            }
+            textarea{
+              width: 100%;
+              min-height: 110px;
+              font-family: Courier, sans-serif;
+              font-size: 11px;
+              color: #444;
+              padding: 5px;
+          }
+        </style>
+
+        <script>
+
+          var textoSaida;
+          var primeiraLinha = true;//flag para detectar primeira linha da textarea
+
+          function onTransitionend(e) {
+                var nameOfProperty = e.propertyName;
+                var elapsedTime = e.elapsedTime;
+                
+                textoSaida.value += ((primeiraLinha?'':'----- ### -----\n') + Horario()+' Nome da propriedade alterada: ' + nameOfProperty + ' | Tempo: ' + elapsedTime + 's' + '\n');
+                textoSaida.scrollTop = textoSaida.scrollHeight;
+                primeiraLinha=false;
+          }
+
+          function Horario() {
+            var d = new Date();
+            var h = d.getHours().toString();
+            if(h.length==1) h="0"+h;
+            var m = d.getMinutes().toString();
+            if(m.length==1) m="0"+m;
+            var s = d.getSeconds().toString();
+            if(s.length==1) s="0"+s;
+            return h + ":" + m + ":" + s;
+          }
+
+          function addEventos() {
+              textoSaida = document.getElementById("status");
+              document.getElementById('divVidaLoka').addEventListener("transitionend", onTransitionend, true);
+          }
+
+          window.addEventListener("load", addEventos, false);
+
+        </script>
+    </head>
+    <body>
+      <div id="main">
+        <p class="titulo">
+          CSS - Transition
+        </p>
+        <div class="esquerda">
+          <div id="divVidaLoka">
+              <p>
+                Posicione o mouse aqui dentro
+              </p>
+          </div>
+        </div>
+        <div class="direita">
+          Status:<br/>
+          <textarea id="status"></textarea>
+        </div>
+      </div>
+      <footer>
+        <p><span>:)<span></p>
+      </footer>
+    </body>
+</html>  

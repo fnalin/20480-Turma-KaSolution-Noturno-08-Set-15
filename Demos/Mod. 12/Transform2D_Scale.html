@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <meta charset="utf-8" />
+        <title>Transform 2D</title>
+        <style type="text/css">
+          body{
+            padding: 20px;
+          }
+          div {
+              width: 300px;
+              height: 100px;
+              padding-top: 30px;
+              background-color: red;
+              color: #fff;
+              border: 2px solid black;
+              font-size: 1.5em;
+              text-align: center;
+          }
+
+          div#div2 {
+              margin: 100px auto;
+              background-color: blue;
+              -ms-transform: scale(2,2); /* IE 9 */
+              -webkit-transform: scale(2,2);/*  Chrome, Safari, Opera */
+              transform: scale(2,2); /* Standard syntax */
+          }  
+
+          div#div2:hover{
+              -ms-transform: scale(4,4); /* IE 9 */
+              -webkit-transform: scale(4,4); /* Chrome, Safari, Opera */
+              transform: scale(4,4); /* Standard syntax */
+              cursor: pointer;
+          }  
+        </style>
+    </head>
+    <body>
+      <h2>Demo Scale</h2>
+      <p>
+        Com o <em>scale()</em>, o elemento aumenta ou diminui a partir da sua posição atual.
+      </p>
+      <div>Olá, eu sou uma DIV.</div>
+      <div id="div2">Eu sou a DIV2 c/ scale<br/><small>(passe o mouse aqui)</small></div>
+    </body>
+</html>  
