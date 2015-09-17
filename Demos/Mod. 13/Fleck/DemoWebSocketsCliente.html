@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <meta charset="utf-8" />
+        <title>Demo Cliente WebSockets</title>
+        <style>
+            body{
+              padding: 0 10px;
+              font-family: Verdana, Arial, sans-serif;
+            }
+        </style>
+
+        <script>
+            
+            var webSocket;
+            var container;
+            var btnMandar;
+            var btnFinalizar;
+
+            function enviarMensagem ()
+            {
+                webSocket.send(document.getElementById("txtMensagem").value);
+            }
+
+            function conexaoAberta ()
+            {
+                container.innerHTML += "Conexão iniciada!";
+            }
+
+            function receberMensagem (mensagem)
+            {
+                container.innerHTML += "<br />" + mensagem.data;
+                console.log(mensagem);
+            }
+
+            function conexaoFinalizada ()
+            {
+                container.innerHTML += "<br />Conexão terminada.";
+            }
+
+            function finalizarConexao(){
+                webSocket.close();
+            }
+
+            function addEventos() {
+              webSocket = new WebSocket("ws://localhost:8081/WebSocket");
+              container = document.getElementById("container");
+              btnMandar = document.getElementById("btnMensagem");
+              btnFinalizar = document.getElementById("btnFinalizar");
+
+
+              btnMandar.addEventListener("click", enviarMensagem, false);
+              btnFinalizar.addEventListener("click", finalizarConexao, false);
+              webSocket.addEventListener("open", conexaoAberta, false);
+              webSocket.addEventListener("message", receberMensagem, false);
+              webSocket.addEventListener("close", conexaoFinalizada, false);
+          }
+
+          window.addEventListener("load", addEventos, false);
+
+
+        </script>
+
+        
+    </head>
+    <body>
+      <input type="text" id="txtMensagem">
+        <input type="button" id="btnMensagem" value="Mandar Mensagem">
+        <input type="button" id="btnFinalizar" value="Fechar Conexão">
+        <div id="container"></div>
+
+
+        <script>
+        /*
+          var webSocket = new WebSocket("ws://localhost:8081/WebSocket");
+            var container = document.getElementById("container");
+            var btnMandar = document.getElementById("btnMensagem");
+
+            btnMandar.onclick = function ()
+            {
+                webSocket.send(document.getElementById("txtMensagem").value);
+            }
+
+            webSocket.onopen = function ()
+            {
+                container.innerHTML += "Conexão iniciada!";
+            }
+
+            webSocket.onmessage = function (mensagem)
+            {
+                container.innerHTML += "<br />" + mensagem.data;
+            }
+
+            webSocket.onclose = function ()
+            {
+                container.innerHTML += "Conexão terminada.";
+            }
+            */
+        </script>
+
+    </body>
+</html>  
