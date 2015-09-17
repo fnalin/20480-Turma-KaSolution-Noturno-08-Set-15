@@ -90,6 +90,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\Chat-480 - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\Chat-480 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\Outra conta.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
