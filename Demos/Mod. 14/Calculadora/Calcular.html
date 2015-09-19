@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+    <head >
+        <meta charset="utf-8" />
+        <title>Demo WebWorkers</title>
+        <style>
+            body{
+              padding: 0 10px;
+              font-family: Verdana, Arial, sans-serif;
+            }
+        </style>
+        <script>
+            //sem worker
+            function calcula() {
+                var campoResultado = document.getElementById("saida");
+                campoResultado.style.color ='red';
+                campoResultado.value = 'Calculando...';
+                setTimeout(function(){
+                    r = 0;
+                    for(i=0; i<=1e+9; i++){
+                        r += i;
+                    } 
+                    campoResultado.value = r
+                }, 1000);
+
+                //r = 0;
+                //for (i = 0; i <= 1e+9; i++) {
+                //    r += i;
+                //}
+                //campoResultado.value = r;
+            };
+
+            // com worker
+            function calcWorker() {
+                var campoResultado = document.getElementById("saida");
+                campoResultado.value = 'Calculando...';
+                var worker = new Worker("calcula.js");
+                worker.onmessage = function (evt) {
+                    campoResultado.value = evt.data;
+                };
+            };
+        </script>
+
+        
+    </head>
+    <body>
+        <section>
+            <p>Iniciar cálculo: <button onclick="calcula()" type=button>Sem Worker</button> <button onclick="calcWorker()" type=button>Com Worker</button></p>
+            <p>
+                <label>Resultado:<br><input id="saida" type=text></label>
+                <img src="load.gif" />
+            </p>
+            
+        </section>
+    </body>
+</html>  

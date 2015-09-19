@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="estilo.css">
+    <title>Fibonacci - Web Worker</title>
+    <script src="jquery-1.5.1.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Gerando Série Fibonacci</h1>
+        <h2>Com Worker</h2>
+
+        <input type="number" id="seriesLength" value="40">
+        <input type="button" id="generateButton" value="Gerar Séries">
+        <img src="load.gif" />
+        <ol id="log"></ol>
+    </div>
+
+    <script>
+        var log = null;
+        var loadImg;
+        var worker;
+
+        $(function () {
+            log = $("#log");
+            loadImg = $("#loadImg");
+            loadImg.hide();
+
+            $("#generateButton").click(function () {
+                var seriesLength = parseInt($("#seriesLength").val());
+
+                log.html("");
+                loadImg.show();
+
+                worker = new Worker("fib-worker-lib.js");
+                worker.onmessage = messageHandler;
+                worker.onerror = errorHandler;
+                worker.postMessage(seriesLength); // Start the worker.
+            });
+
+            function messageHandler(e) {
+                var results = e.data;
+                $.each(results, function () {
+                    logMsg(this);
+                });
+                loadImg.hide();
+            }
+
+            function errorHandler(e) {
+                logMsg(e.message);
+            }
+
+            function logMsg(msg) {
+                log.append("<li>" + msg + "</li>");
+            }
+
+        });
+    </script>
+</body>
+</html>
